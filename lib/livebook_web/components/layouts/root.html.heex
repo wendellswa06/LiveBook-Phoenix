@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <link rel="icon" type="image/svg+xml" href={~p"/favicon.svg"} />
+    <link rel="alternate icon" type="image/png" href={~p"/favicon.png"} />
+    <.live_title>
+      <%= assigns[:page_title] || "Livebook" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script>
+      window.LIVEBOOK_BASE_URL_PATH = "<%= Livebook.Config.base_url_path() %>";
+    </script>
+    <%!-- This prevents the script to be loaded twice in Chrome --%>
+    <link rel="modulepreload" href={~p"/assets/app.js"} />
+    <script phx-track-static type="module" type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  <body
+    class="bg-white"
+    data-feature-flags={Livebook.Config.enabled_feature_flags() |> Enum.join(",")}
+    data-within-iframe={Livebook.Config.within_iframe?()}
+  >
+    <%= @inner_content %>
+  </body>
+</html>

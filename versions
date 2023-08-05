@@ -1,0 +1,6 @@
+elixir="1.15.2"
+otp="26.0.2"
+openssl="1.1.1s"
+rebar3="3.22.0"
+debian="bullseye-20230612-slim"
+ubuntu="focal-20230126"
